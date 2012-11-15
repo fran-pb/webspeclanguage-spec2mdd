@@ -9,6 +9,7 @@ import org.webspectlanguage.webspec2wr.factory.webmodel.containers.Page;
 import org.webspectlanguage.webspec2wr.factory.webmodel.containers.WRPage;
 import org.webspectlanguage.webspec2wr.factory.webmodel.links.WRKOLink;
 import org.webspectlanguage.webspec2wr.factory.webmodel.links.WRLink;
+import org.webspectlanguage.webspec2wr.factory.webmodel.links.WRLinkParameter;
 import org.webspectlanguage.webspec2wr.factory.webmodel.links.WROKLink;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRContentUnit;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRDataUnit;
@@ -58,6 +59,7 @@ public class WRWebModelFactory extends WebModelFactory {
 		this.idOKLink = 0;
 		this.idLinkKO = 0;
 		this.idLinkParameter = 0;
+		this.idField = 0;
 	}
 	
 	private static void createInstance() {
@@ -111,6 +113,9 @@ public class WRWebModelFactory extends WebModelFactory {
 		this.idEntryUnit = 0;
 		this.idIndexUnit = 0;
 		this.idMultiMessageUnit = 0;
+		this.idCreateUnit = 0;
+		this.idDeleteUnit = 0;
+		this.idModifyUnit = 0;
 		this.idLink = 0;
 		this.idOKLink = 0;
 		this.idLinkKO = 0;
@@ -313,7 +318,7 @@ public class WRWebModelFactory extends WebModelFactory {
 
 			// process a field: create a link parameter for every field in the entry unit
 			// Warning : no siempre el target respeta el formado id_entyunit.name_field
-			link.addParameter(field.getName(), field.getId(), target.getId()+"."+field.getName());
+			this.addParameterToLink(link, field.getName(), field.getId(), target.getId()+"."+field.getName());
 		}
 		
 		return cru;
@@ -327,6 +332,10 @@ public class WRWebModelFactory extends WebModelFactory {
 	public void addModifyUnit() {
 		// TODO
 
+	}
+	
+	public void addSelectorGroupToEntryUnit() {
+		// TODO
 	}
 
 	/*
@@ -360,6 +369,13 @@ public class WRWebModelFactory extends WebModelFactory {
 		WRKOLink koLink = new WRKOLink(id, name, source, target);
 
 		return koLink;
+	}
+	
+	public void addParameterToLink(WRLink link, String name, String source, String target) {
+		String id = "par" + this.getIdLinkParameter();
+		
+		WRLinkParameter parm = new WRLinkParameter(id, name, source, target);
+		link.addParameter(parm);
 	}
 	
 	/*

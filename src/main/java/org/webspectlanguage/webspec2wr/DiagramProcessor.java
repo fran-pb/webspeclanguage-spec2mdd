@@ -15,9 +15,16 @@ import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
 public class DiagramProcessor {
 
 	// private static Set<DiagramImpl> diagrams = new HashSet<DiagramImpl>();
-	private WRDataModelFactory dataModel = WRDataModelFactory.getInstance();
-	private WRWebModelFactory webModel = WRWebModelFactory.getInstance();
-	private ArrayList<DiagramImpl> diagrams = new ArrayList<DiagramImpl>();
+	private WRDataModelFactory dataModel;
+	private WRWebModelFactory webModel;
+	private ArrayList<DiagramImpl> diagrams;
+	
+	public DiagramProcessor() {
+		super();
+		this.dataModel = WRDataModelFactory.getInstance();
+		this.webModel = WRWebModelFactory.getInstance();
+		this.diagrams = new ArrayList<DiagramImpl>();
+	}
 
 	private DiagramImpl openDiagramFile(String filepath) {
 		// Construct an instance of the parser and specify a file WebSpec
@@ -58,7 +65,7 @@ public class DiagramProcessor {
 
 			// process an interaction
 			interactionProcessor.setInteraction(interaction);
-			interactionProcessor.process(this.getDataModel());
+			interactionProcessor.processDataModel();
 		}
 
 	}
@@ -93,7 +100,7 @@ public class DiagramProcessor {
 
 			// process an interaction
 			interactionProcessor.setInteraction(interaction);
-			interactionProcessor.process(this.getWebModel());
+			interactionProcessor.processWebModel();
 		}
 
 	}

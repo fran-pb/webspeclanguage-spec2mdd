@@ -17,7 +17,6 @@ Icon
 *.ear
 
 ## ECLIPSE: https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore
-*.pydevproject
 .project
 .metadata
 bin/**

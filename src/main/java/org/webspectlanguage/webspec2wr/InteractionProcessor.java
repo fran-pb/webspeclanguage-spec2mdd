@@ -24,8 +24,8 @@ public class InteractionProcessor {
 	private TransitionProcessor transitionProcessor;
 
 	public InteractionProcessor() {
-		dataModel = null;
-		webModel = null;
+		dataModel = WRDataModelFactory.getInstance();
+		webModel = WRWebModelFactory.getInstance();
 		interaction = null;
 		transitionProcessor = new TransitionProcessor();
 	}
@@ -61,9 +61,7 @@ public class InteractionProcessor {
 		return this.getInteraction().getRoot().getWidgets();
 	}
 
-	public void process(WRDataModelFactory dataModel) {
-
-		this.setDataModel(dataModel);
+	public void processDataModel() {
 
 		WRDataModelWidgetVisitor visitor = new WRDataModelWidgetVisitor();
 		Iterator<Widget> itrWidgets = this.getWidgetsFromInteraction()
@@ -80,9 +78,7 @@ public class InteractionProcessor {
 	/*
 	 * WebModel Process
 	 */
-	public void process(WRWebModelFactory webModel) {
-
-		this.setWebModel(webModel);
+	public void processWebModel() {
 
 		String name = this.getInteraction().getName();
 		WRPage page = (WRPage) ((WRWebModelFactory) this.getWebModel())

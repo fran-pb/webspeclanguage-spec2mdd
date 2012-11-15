@@ -45,6 +45,33 @@ public class WRDataModelFactory extends DataModelFactory {
 	public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException(); 
 	}
+	
+	/*
+	 * Debugger
+	 */
+
+	public void showOnConsole() {
+		System.out.println("+--------------------------------------+");
+		System.out.println("|   DataModel                          |");
+		System.out.println("+--------------------------------------+");
+		System.out.println();
+
+		// iterate through the entities
+		Iterator<WREntity> itr = this.getEntities().iterator();
+
+		while (itr.hasNext()) {
+			WREntity entity = itr.next();
+
+			// process an entity
+			entity.showOnConsole();
+		}
+	}
+
+	public void cleanUpForTesting() {
+		Set<WREntity> newEntities = new HashSet<WREntity>();
+		this.setEntities(newEntities);
+	}
+
 
 	/*
 	 * Getter & Setters
@@ -165,31 +192,4 @@ public class WRDataModelFactory extends DataModelFactory {
 		}
 
 	}
-
-	/*
-	 * Debugger
-	 */
-
-	public void showOnConsole() {
-		System.out.println("+--------------------------------------+");
-		System.out.println("|   DataModel                          |");
-		System.out.println("+--------------------------------------+");
-		System.out.println();
-
-		// iterate through the entities
-		Iterator<WREntity> itr = this.getEntities().iterator();
-
-		while (itr.hasNext()) {
-			WREntity entity = itr.next();
-
-			// process an entity
-			entity.showOnConsole();
-		}
-	}
-
-	public void cleanUpForTesting() {
-		Set<WREntity> newEntities = new HashSet<WREntity>();
-		this.setEntities(newEntities);
-	}
-
 }

@@ -15,13 +15,19 @@ import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
  */
 public class DiagramProcessorTest {
 
+	WRDataModelFactory dataModelTester;
+	WRWebModelFactory webModelTester;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		WRDataModelFactory tester = WRDataModelFactory.getInstance();
-		tester.cleanUpForTesting();
+		this.dataModelTester = WRDataModelFactory.getInstance();
+		this.dataModelTester.cleanUpForTesting();
+		
+		this.webModelTester = WRWebModelFactory.getInstance();
+		this.webModelTester.cleanUpForTesting();
 	}
 	
 	/**
@@ -49,32 +55,31 @@ public class DiagramProcessorTest {
 	@Test
 	public void testProcessDiagramsForDataModel() {
 		DiagramProcessor tester = new DiagramProcessor();
-		WRDataModelFactory testerDataModel = tester.getDataModel();
 
 		tester.addDiagramFilePath("/Users/kaki/Documents/LIFIA/spec2mdd/resources/register.xml");
 		tester.addDiagramFilePath("/Users/kaki/Documents/LIFIA/spec2mdd/resources/registerAgain.xml");
 
-		assertEquals("# Entities Pre Process: ", 0, testerDataModel
+		assertEquals("# Entities Pre Process: ", 0, this.dataModelTester
 				.getEntities().size());
 
 		tester.processDiagramsForDataModel();
 
-		assertEquals("# Entities Post Process: ", 3, testerDataModel
+		assertEquals("# Entities Post Process: ", 3, this.dataModelTester
 				.getEntities().size());
 
-		assertTrue("[E: User]", testerDataModel.existsEntityWithName("User"));
-		assertTrue("[E: Post]", testerDataModel.existsEntityWithName("Post"));
+		assertTrue("[E: User]", this.dataModelTester.existsEntityWithName("User"));
+		assertTrue("[E: Post]", this.dataModelTester.existsEntityWithName("Post"));
 		assertTrue("[E: Country]",
-				testerDataModel.existsEntityWithName("Country"));
+				this.dataModelTester.existsEntityWithName("Country"));
 		assertFalse("[E: PanelWithOutItems]",
-				testerDataModel.existsEntityWithName("PanelWithOutItems"));
+				this.dataModelTester.existsEntityWithName("PanelWithOutItems"));
 
 		assertTrue("[E: User] -> [E: Country]",
-				testerDataModel.entityHasRelationshipTo("User", "Country"));
+				this.dataModelTester.entityHasRelationshipTo("User", "Country"));
 		assertTrue("[E: User] -> [E: Post]",
-				testerDataModel.entityHasRelationshipTo("User", "Post"));
+				this.dataModelTester.entityHasRelationshipTo("User", "Post"));
 		assertFalse("[E: Country] -> [E: Post]",
-				testerDataModel.entityHasRelationshipTo("Country", "Post"));
+				this.dataModelTester.entityHasRelationshipTo("Country", "Post"));
 	}
 	
 	/**
@@ -98,10 +103,9 @@ public class DiagramProcessorTest {
 		assertEquals("# Pages Post Process: ", 6, testerWebModel
 				.getPages().size());
 
-		assertTrue("[P: Login]", testerWebModel.existsPageWithName("Home"));
+		assertTrue("[P: Home]", testerWebModel.existsPageWithName("Home"));
 		assertTrue("[P: Login]", testerWebModel.existsPageWithName("Login"));
 		assertTrue("[P: Register]", testerWebModel.existsPageWithName("Register"));
-		assertTrue("[P: Home]", testerWebModel.existsPageWithName("Home"));
 		assertTrue("[P: Country Detail]", testerWebModel.existsPageWithName("CountryDetail"));
 		assertFalse("[P: City]", testerWebModel.existsPageWithName("City"));
 
