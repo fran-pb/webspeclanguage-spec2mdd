@@ -11,20 +11,28 @@ import org.webspeclanguage.impl.widget.ListOfContainer;
 import org.webspeclanguage.impl.widget.Panel;
 import org.webspeclanguage.impl.widget.RadioButton;
 import org.webspeclanguage.impl.widget.TextField;
+import org.webspectlanguage.webspec2wr.factory.WRDataModelFactory;
+import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WREntryUnit;
 
 public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 	
+	private WRDataModelFactory dataModel;
+	private WRWebModelFactory webModel;
 	private WREntryUnit enu;
 
 	public WRWebModelEntryUnitVisitor(WREntryUnit entryUnit) {
+		this.dataModel = WRDataModelFactory.getInstance();
+		this.webModel = WRWebModelFactory.getInstance();
 		this.enu = entryUnit;
 	}
 
 	@Override
 	public void visit(TextField textField) {
 		System.out.println(" " + textField.getName()+": ["+textField.getClass().getName()+"]");
-
+		
+		String name = textField.getName();
+		this.webModel.createFieldInEntryUnit(enu, name, "string", "true");
 	}
 
 	@Override
@@ -37,12 +45,14 @@ public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 	public void visit(CheckBox checkBox) {
 		System.out.println(" " + checkBox.getName()+": ["+checkBox.getClass().getName()+"]");
 
+		String name = checkBox.getName();
+		this.webModel.createFieldInEntryUnit(enu, name, "boolean", "true");
 	}
 
 	@Override
 	public void visit(ComboBox comboBox) {
-		System.out.println(" " + comboBox.getName()+": ["+comboBox.getClass().getName()+"]");
-
+		String name = comboBox.getName();
+		this.webModel.createSelectionFieldInEntryUnit(enu, name, "string");
 	}
 
 	@Override
@@ -58,6 +68,7 @@ public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 	public void visit(RadioButton radioButton) {
 		System.out.println(" " + radioButton.getName()+": ["+radioButton.getClass().getName()+"]");
 
+		String name = radioButton.getName();
 	}
 
 	@Override

@@ -11,12 +11,14 @@ import org.webspectlanguage.webspec2wr.factory.webmodel.links.WRKOLink;
 import org.webspectlanguage.webspec2wr.factory.webmodel.links.WRLink;
 import org.webspectlanguage.webspec2wr.factory.webmodel.links.WRLinkParameter;
 import org.webspectlanguage.webspec2wr.factory.webmodel.links.WROKLink;
+import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRAbstractField;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRContentUnit;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRDataUnit;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WREntryUnit;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRField;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRIndexUnit;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRMultiMessageUnit;
+import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRSelectionField;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.operation.WRCreateUnit;
 
 /**
@@ -38,6 +40,7 @@ public class WRWebModelFactory extends WebModelFactory {
 	private Integer idLinkKO;
 	private Integer idLinkParameter;
 	private Integer idField;
+	private Integer idSelectionField;
 
 	/*
 	 * Constructor
@@ -60,6 +63,7 @@ public class WRWebModelFactory extends WebModelFactory {
 		this.idLinkKO = 0;
 		this.idLinkParameter = 0;
 		this.idField = 0;
+		this.idSelectionField = 0;
 	}
 	
 	private static void createInstance() {
@@ -121,6 +125,7 @@ public class WRWebModelFactory extends WebModelFactory {
 		this.idLinkKO = 0;
 		this.idLinkParameter = 0;
 		this.idField = 0;
+		this.idSelectionField = 0;
 	}
 
 	/*
@@ -188,6 +193,10 @@ public class WRWebModelFactory extends WebModelFactory {
 	
 	private Integer getIdField() {
 		return ++idField;
+	}
+	
+	private Integer getIdSelectionField() {
+		return ++idSelectionField;
 	}
 
 	/*
@@ -282,6 +291,26 @@ public class WRWebModelFactory extends WebModelFactory {
 		
 		return enu;
 	}
+	
+	public void createFieldInEntryUnit(WREntryUnit enu, String name, String type, String modifiable) {
+		String id = "fld" + this.getIdField();
+		
+		WRField field = new WRField(id, name, type, modifiable);
+		enu.addField(field);
+	}
+	
+	public void createSelectionFieldInEntryUnit(WREntryUnit enu, String name,
+			String type) {
+		// TODO Auto-generated method stub
+		
+		/*
+		 * Crear un WRSelectionField
+		 */
+		String id = "sfld" + this.getIdSelectionField();
+		
+		WRSelectionField sfield = new WRSelectionField(id, name, type);
+		enu.addField(sfield);
+	}
 
 	public WRMultiMessageUnit addMultiMessageUnitToPage(WRPage page, String name, String text) {
 		String id = "mssu" + this.getIdEntryUnit();
@@ -311,10 +340,10 @@ public class WRWebModelFactory extends WebModelFactory {
 		
 		WRLink link = this.createLink(target.getId(), cru.getId());
 		// iterate through the fields
-		Iterator<WRField> itr = target.getFields().iterator();
+		Iterator<WRAbstractField> itr = target.getFields().iterator();
 
 		while (itr.hasNext()) {
-			WRField field = itr.next();
+			WRAbstractField field = itr.next();
 
 			// process a field: create a link parameter for every field in the entry unit
 			// Warning : no siempre el target respeta el formado id_entyunit.name_field

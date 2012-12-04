@@ -10,7 +10,7 @@ import org.webspectlanguage.webspec2wr.factory.webmodel.links.WRLink;
  */
 public class WREntryUnit extends WRContentUnit {
 
-	private Set<WRField> fields;
+	private Set<WRAbstractField> fields;
 	private Set<WRLink> links;
 
 	/*
@@ -23,11 +23,11 @@ public class WREntryUnit extends WRContentUnit {
 	/*
 	 * Getter & Setters
 	 */
-	public Set<WRField> getFields() {
+	public Set<WRAbstractField> getFields() {
 		return fields;
 	}
 
-	public void setFields(Set<WRField> fields) {
+	public void setFields(Set<WRAbstractField> fields) {
 		this.fields = fields;
 	}
 
@@ -37,6 +37,10 @@ public class WREntryUnit extends WRContentUnit {
 
 	public void setLinks(Set<WRLink> links) {
 		this.links = links;
+	}
+
+	public void addField(WRAbstractField field) {
+		this.getFields().add(field);
 	}
 
 }
