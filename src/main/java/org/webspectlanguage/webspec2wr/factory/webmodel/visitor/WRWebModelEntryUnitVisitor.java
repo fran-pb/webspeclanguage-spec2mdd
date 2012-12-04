@@ -11,14 +11,14 @@ import org.webspeclanguage.impl.widget.ListOfContainer;
 import org.webspeclanguage.impl.widget.Panel;
 import org.webspeclanguage.impl.widget.RadioButton;
 import org.webspeclanguage.impl.widget.TextField;
-import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRDataUnit;
+import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WREntryUnit;
 
 public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 	
-	private WRDataUnit dau;
+	private WREntryUnit enu;
 
-	public WRWebModelEntryUnitVisitor(WRDataUnit dau) {
-		this.dau = dau;
+	public WRWebModelEntryUnitVisitor(WREntryUnit entryUnit) {
+		this.enu = entryUnit;
 	}
 
 	@Override

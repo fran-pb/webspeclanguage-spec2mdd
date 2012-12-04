@@ -17,9 +17,9 @@ import org.webspeclanguage.impl.widget.TextField;
 import org.webspeclanguage.impl.widget.Widget;
 import org.webspectlanguage.webspec2wr.factory.WRDataModelFactory;
 import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
-import org.webspectlanguage.webspec2wr.factory.datamodel.visitor.WRDataModelPanelVisitor;
 import org.webspectlanguage.webspec2wr.factory.webmodel.containers.WRPage;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRDataUnit;
+import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WREntryUnit;
 
 /**
  * @author Francisco Peña <tkd.inbox@gmail.com>
@@ -210,12 +210,12 @@ public class WRWebModelWidgetVisitor implements
 			System.out.println(panel.getName()+" [Panel] Será inferido a - EntryUnit -");
 			
 			String name = panel.getName();
-			WRDataUnit dau = this.getWebModel().addDataUnitToPage(page, name, name);
+			WREntryUnit enu = this.getWebModel().addEntryUnitToPage(page, name);
 			
 			// iterate through the entities
 			itr = panel.getWidgets().iterator();
 
-			WRWebModelEntryUnitVisitor visitor = new WRWebModelEntryUnitVisitor(dau);
+			WRWebModelEntryUnitVisitor visitor = new WRWebModelEntryUnitVisitor(enu);
 			while (itr.hasNext()) {
 				itr.next().accept(visitor);
 			}
