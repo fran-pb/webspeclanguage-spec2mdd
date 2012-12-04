@@ -1,4 +1,4 @@
-package org.webspectlanguage.webspec2wr.factory.datamodel.visitor;
+package org.webspectlanguage.webspec2wr.factory.webmodel.visitor;
 
 import org.webspeclanguage.impl.widget.Button;
 import org.webspeclanguage.impl.widget.CheckBox;
@@ -11,32 +11,28 @@ import org.webspeclanguage.impl.widget.Panel;
 import org.webspeclanguage.impl.widget.RadioButton;
 import org.webspeclanguage.impl.widget.TextField;
 import org.webspectlanguage.webspec2wr.factory.WRDataModelFactory;
-import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
-import org.webspectlanguage.webspec2wr.factory.webmodel.containers.WRPage;
+import org.webspectlanguage.webspec2wr.factory.datamodel.WREntity;
 
 /**
  * @author Francisco Peña <tkd.inbox@gmail.com>
  */
-public class WRWebModelWidgetVisitor implements
+public class WRWebModelListOfContainerVisitor implements
 		org.webspeclanguage.api.utils.WidgetVisitor {
 
-	private WRPage page;
-	private WRWebModelFactory webModel;
+	private WREntity entity;
+	private String entityTo;
+	private WRDataModelFactory dataModel;
 
-	/*
-	 * Constructs
-	 */
-	public WRWebModelWidgetVisitor(WRPage aPage) {
-		this.page = aPage;
-		this.webModel = WRWebModelFactory.getInstance();
+	public WRWebModelListOfContainerVisitor(WREntity aEntity,
+			String aEntityTo) {
+		this.entity = aEntity;
+		this.entityTo = aEntityTo;
+		this.dataModel = WRDataModelFactory.getInstance();
 	}
 
-	/*
-	 * Visitor Override
-	 */
 	@Override
 	public void visit(TextField textField) {
-
+		this.dataModel.addRelationshipToEntity(entity, entityTo, "many", "one");
 	}
 
 	@Override
@@ -46,7 +42,7 @@ public class WRWebModelWidgetVisitor implements
 
 	@Override
 	public void visit(CheckBox checkBox) {
-		
+		this.dataModel.addRelationshipToEntity(entity, entityTo, "many", "many");
 	}
 
 	@Override
@@ -71,7 +67,7 @@ public class WRWebModelWidgetVisitor implements
 
 	@Override
 	public void visit(RadioButton radioButton) {
-
+		this.dataModel.addRelationshipToEntity(entity, entityTo, "many", "many");
 	}
 
 	@Override

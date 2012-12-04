@@ -10,8 +10,8 @@ import org.webspectlanguage.webspec2wr.factory.WRDataModelFactory;
 import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
 import org.webspectlanguage.webspec2wr.factory.WebModelFactory;
 import org.webspectlanguage.webspec2wr.factory.datamodel.visitor.WRDataModelWidgetVisitor;
-import org.webspectlanguage.webspec2wr.factory.datamodel.visitor.WRWebModelWidgetVisitor;
 import org.webspectlanguage.webspec2wr.factory.webmodel.containers.WRPage;
+import org.webspectlanguage.webspec2wr.factory.webmodel.visitor.WRWebModelWidgetVisitor;
 
 /**
  * @author Francisco Peña <tkd.inbox@gmail.com>

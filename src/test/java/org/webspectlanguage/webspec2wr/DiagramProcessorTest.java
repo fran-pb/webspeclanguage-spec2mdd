@@ -64,7 +64,7 @@ public class DiagramProcessorTest {
 
 		tester.processDiagramsForDataModel();
 
-		assertEquals("# Entities Post Process: ", 3, this.dataModelTester
+		assertEquals("# Entities Post Process: ", 4, this.dataModelTester
 				.getEntities().size());
 
 		assertTrue("[E: User]", this.dataModelTester.existsEntityWithName("User"));
@@ -100,7 +100,7 @@ public class DiagramProcessorTest {
 
 		tester.processDiagramsForWebModel();
 
-		assertEquals("# Pages Post Process: ", 6, testerWebModel
+		assertEquals("# Pages Post Process: ", 7, testerWebModel
 				.getPages().size());
 
 		assertTrue("[P: Home]", testerWebModel.existsPageWithName("Home"));

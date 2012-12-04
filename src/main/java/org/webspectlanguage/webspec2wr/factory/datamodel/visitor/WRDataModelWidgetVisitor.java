@@ -95,13 +95,10 @@ public class WRDataModelWidgetVisitor implements
 		String name = panel.getName();
 		WREntity entity;
 
-		if (((WRDataModelFactory) this.getDataModel())
-				.existsEntityWithName(name)) {
-			entity = (WREntity) ((WRDataModelFactory) this.getDataModel())
-					.getEntityWithName(name);
+		if (this.getDataModel().existsEntityWithName(name)) {
+			entity = this.getDataModel().getEntityWithName(name);
 		} else {
-			entity = (WREntity) ((WRDataModelFactory) this.getDataModel())
-					.createEntity(name);
+			entity = this.getDataModel().createEntity(name);
 		}
 
 		// iterate through the entities
