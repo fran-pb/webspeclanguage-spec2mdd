@@ -20,6 +20,7 @@ import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
 import org.webspectlanguage.webspec2wr.factory.webmodel.containers.WRPage;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRDataUnit;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WREntryUnit;
+import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRIndexUnit;
 
 /**
  * @author Francisco Peña <tkd.inbox@gmail.com>
@@ -132,7 +133,23 @@ public class WRWebModelWidgetVisitor implements
 
 	@Override
 	public void visit(ListOfContainer listOfContainer) {
+		if (listOfContainer.getWidgets().size() > 0) {
 
+			/*
+			 * TODO Warning: Revisar bien como distinguir bien las distintas
+			 * reglas de inferencia
+			 */
+
+			Widget firstWidget = listOfContainer.getWidgets().get(0);
+
+			String widgetClass = firstWidget.getClass().getName();
+
+			if (this.getAcceptableIndexUnitWidgets().contains(
+					widgetClass)) {
+				this.inferIndexUnit(listOfContainer);
+			}
+
+		}
 	}
 
 	@Override
@@ -238,6 +255,37 @@ public class WRWebModelWidgetVisitor implements
 				itr.next().accept(visitor);
 			}
 		}
+	}
+	
+	private void inferIndexUnit(ListOfContainer listOfContainer) {
+		Boolean acceptableStatus = true;
+
+		// iterate through the entities
+		Iterator<Widget> itr = listOfContainer.getWidgets().iterator();
+
+		while (itr.hasNext()) {
+			Widget widget = itr.next();
+
+			String actualWidgetClass = widget.getClass().getName();
+
+			Boolean acceptableWidget = this.getAcceptableIndexUnitWidgets()
+					.contains(actualWidgetClass);
+
+			acceptableStatus = acceptableStatus && acceptableWidget;
+
+			if (!acceptableStatus)
+				break;
+		}
+
+		if (acceptableStatus) {
+			System.out.println();
+			System.out.println(listOfContainer.getName()
+					+ " [ListOfContainer] Será inferido a - IndexUnit -");
+
+			String name = listOfContainer.getName();
+			WRIndexUnit inu = this.getWebModel().addIndexUnitToPage(page, name, name);
+		}
+		
 	}
 
 }
