@@ -1,5 +1,6 @@
 package org.webspectlanguage.webspec2wr.factory.webmodel.units.content;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.webspectlanguage.webspec2wr.factory.webmodel.containers.WRPage;
@@ -18,6 +19,8 @@ public class WREntryUnit extends WRContentUnit {
 	 */
 	public WREntryUnit(String id, String name, WRPage page) {
 		super(id, name, page);
+		this.fields = new HashSet<WRAbstractField>();
+		this.links = new HashSet<WRLink>();
 	}
 	
 	/*
