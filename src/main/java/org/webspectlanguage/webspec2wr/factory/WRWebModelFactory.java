@@ -20,6 +20,7 @@ import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRIndexUni
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRMultiMessageUnit;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRSelectionField;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.operation.WRCreateUnit;
+import org.webspectlanguage.webspec2wr.factory.webmodel.units.utilities.WRSelectorUnit;
 
 /**
  * @author Francisco Peña <tkd.inbox@gmail.com>
@@ -35,6 +36,7 @@ public class WRWebModelFactory extends WebModelFactory {
 	private Integer idCreateUnit;
 	private Integer idDeleteUnit;
 	private Integer idModifyUnit;
+	private Integer idSelectorUnit;
 	private Integer idLink;
 	private Integer idOKLink;
 	private Integer idLinkKO;
@@ -58,6 +60,7 @@ public class WRWebModelFactory extends WebModelFactory {
 		this.idCreateUnit = 0;
 		this.idDeleteUnit = 0;
 		this.idModifyUnit = 0;
+		this.idSelectorUnit = 0;
 		this.idLink = 0;
 		this.idOKLink = 0;
 		this.idLinkKO = 0;
@@ -120,6 +123,7 @@ public class WRWebModelFactory extends WebModelFactory {
 		this.idCreateUnit = 0;
 		this.idDeleteUnit = 0;
 		this.idModifyUnit = 0;
+		this.idSelectorUnit = 0;
 		this.idLink = 0;
 		this.idOKLink = 0;
 		this.idLinkKO = 0;
@@ -133,10 +137,6 @@ public class WRWebModelFactory extends WebModelFactory {
 	 */
 	private WRDataModelFactory getDataModel() {
 		return dataModel;
-	}
-
-	private void setDataModel(WRDataModelFactory dataModel) {
-		this.dataModel = dataModel;
 	}
 
 	public Set<WRPage> getPages() {
@@ -173,6 +173,10 @@ public class WRWebModelFactory extends WebModelFactory {
 
 	private Integer getIdModifyUnit() {
 		return ++idModifyUnit;
+	}
+	
+	private Integer getIdSelectorUnit() {
+		return ++idSelectorUnit;
 	}
 
 	private Integer getIdLink() {
@@ -324,12 +328,35 @@ public class WRWebModelFactory extends WebModelFactory {
 
 		return mssu;
 	}
+	
+	/*
+	 * Utilities Unit
+	 */
+	
+	public WRSelectorUnit addSelectorUnitToEntryUnit(WREntryUnit target, String entityName) {
+		// TODO
+		WREntity entity = this.getDataModel().getEntityWithName(entityName);
+
+		String id = "seu" + this.getIdSelectorUnit();
+		String name = "Selector" + entity.getName();
+
+		WRSelectorUnit seu = new WRSelectorUnit(id, name, entity);
+
+		WRLink link = this.createLink(target.getId(), seu.getId());
+		seu.addLink(link);
+
+		return seu;
+	}
+	
 
 	/*
 	 * Operation Unit
 	 */
-	public WRCreateUnit addCreateUnit(WREntity entity, WREntryUnit target) {
+	
+	public WRCreateUnit addCreateUnit(String entityName, WREntryUnit target) {
 		// TODO
+		WREntity entity = this.getDataModel().getEntityWithName(entityName);
+
 		String id = "cru" + this.getIdCreateUnit();
 		String name = "Create" + entity.getName();
 
@@ -371,9 +398,6 @@ public class WRWebModelFactory extends WebModelFactory {
 
 	}
 
-	public void addSelectorGroupToEntryUnit() {
-		// TODO
-	}
 
 	/*
 	 * Link

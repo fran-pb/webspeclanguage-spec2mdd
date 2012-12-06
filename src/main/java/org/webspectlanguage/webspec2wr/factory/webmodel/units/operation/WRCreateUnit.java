@@ -3,7 +3,6 @@
  */
 package org.webspectlanguage.webspec2wr.factory.webmodel.units.operation;
 
-import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
 import org.webspectlanguage.webspec2wr.factory.datamodel.WREntity;
 import org.webspectlanguage.webspec2wr.factory.webmodel.links.WRKOLink;
 import org.webspectlanguage.webspec2wr.factory.webmodel.links.WROKLink;

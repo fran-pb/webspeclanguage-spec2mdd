@@ -9,19 +9,26 @@ import org.webspectlanguage.webspec2wr.factory.webmodel.units.WRUnit;
 /**
  * @author Francisco Peña <tkd.inbox@gmail.com>
  */
+
 public class WRContentUnit extends WRUnit {
 	private String id;
 	private String name;
 	private WRPage parent;
 	
 	private Set<WRLink> links;
-	
+
+	/*
+	 * Constructor
+	 */
 	public WRContentUnit(String id, String name, WRPage page) {
 		this.setId(id);
 		this.setName(name);
 		this.setParent(page);
 	}
 
+	/*
+	 * Getter & Setters
+	 */
 	public String getId() {
 		return id;
 	}

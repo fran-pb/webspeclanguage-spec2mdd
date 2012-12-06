@@ -6,6 +6,7 @@ import org.webspectlanguage.webspec2wr.factory.webmodel.containers.WRPage;
 /**
  * @author Francisco Peña <tkd.inbox@gmail.com>
  */
+
 public class WRIndexUnit extends WRContentUnit {
 
 	private WREntity entity;

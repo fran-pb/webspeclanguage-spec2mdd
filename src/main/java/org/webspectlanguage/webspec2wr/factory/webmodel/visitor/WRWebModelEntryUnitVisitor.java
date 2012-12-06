@@ -14,12 +14,17 @@ import org.webspeclanguage.impl.widget.TextField;
 import org.webspectlanguage.webspec2wr.factory.WRDataModelFactory;
 import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
 import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WREntryUnit;
+import org.webspectlanguage.webspec2wr.factory.webmodel.units.operation.WRCreateUnit;
 
 public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
-	
+
 	private WRDataModelFactory dataModel;
 	private WRWebModelFactory webModel;
 	private WREntryUnit enu;
+
+	/*
+	 * Constructs
+	 */
 
 	public WRWebModelEntryUnitVisitor(WREntryUnit entryUnit) {
 		this.dataModel = WRDataModelFactory.getInstance();
@@ -27,23 +32,57 @@ public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 		this.enu = entryUnit;
 	}
 
+	/*
+	 * Setters and Getters
+	 */
+
+	public WRDataModelFactory getDataModel() {
+		return dataModel;
+	}
+
+	public void setDataModel(WRDataModelFactory dataModel) {
+		this.dataModel = dataModel;
+	}
+
+	public WRWebModelFactory getWebModel() {
+		return webModel;
+	}
+
+	public void setWebModel(WRWebModelFactory webModel) {
+		this.webModel = webModel;
+	}
+
+	public WREntryUnit getEnu() {
+		return enu;
+	}
+
+	public void setEnu(WREntryUnit enu) {
+		this.enu = enu;
+	}
+
+	/*
+	 * Visitor Override
+	 */
+
 	@Override
 	public void visit(TextField textField) {
-		System.out.println(" " + textField.getName()+": ["+textField.getClass().getName()+"]");
-		
+		System.out.println(" " + textField.getName() + ": ["
+				+ textField.getClass().getName() + "]");
+
 		String name = textField.getName();
 		this.webModel.createFieldInEntryUnit(enu, name, "string", "true");
 	}
 
 	@Override
 	public void visit(Button button) {
-		// TODO Auto-generated method stub
-
+		String entity = enu.getName();
+		WRCreateUnit cru = this.getWebModel().addCreateUnit(entity, enu);
 	}
 
 	@Override
 	public void visit(CheckBox checkBox) {
-		System.out.println(" " + checkBox.getName()+": ["+checkBox.getClass().getName()+"]");
+		System.out.println(" " + checkBox.getName() + ": ["
+				+ checkBox.getClass().getName() + "]");
 
 		String name = checkBox.getName();
 		this.webModel.createFieldInEntryUnit(enu, name, "boolean", "true");
@@ -56,25 +95,36 @@ public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 	}
 
 	@Override
-	public void visit(Link link) { return; }
+	public void visit(Link link) {
+		return;
+	}
 
 	@Override
-	public void visit(ListBox listBox) { return; }
+	public void visit(ListBox listBox) {
+		return;
+	}
 
 	@Override
-	public void visit(ListOfContainer listOfContainer) { return; }
+	public void visit(ListOfContainer listOfContainer) {
+		return;
+	}
 
 	@Override
 	public void visit(RadioButton radioButton) {
-		System.out.println(" " + radioButton.getName()+": ["+radioButton.getClass().getName()+"]");
+		System.out.println(" " + radioButton.getName() + ": ["
+				+ radioButton.getClass().getName() + "]");
 
 		String name = radioButton.getName();
 	}
 
 	@Override
-	public void visit(Label label) { return; }
+	public void visit(Label label) {
+		return;
+	}
 
 	@Override
-	public void visit(Panel panel) { return; }
+	public void visit(Panel panel) {
+		return;
+	}
 
 }
