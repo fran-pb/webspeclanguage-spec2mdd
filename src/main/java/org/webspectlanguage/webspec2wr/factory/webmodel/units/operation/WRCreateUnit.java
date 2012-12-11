@@ -14,7 +14,7 @@ public class WRCreateUnit extends WROperationUnit {
 	private WREntity entity;
 	private WROKLink okLink;
 	private WRKOLink koLink;
-	
+
 	/*
 	 * Constructor
 	 */
@@ -33,7 +33,7 @@ public class WRCreateUnit extends WROperationUnit {
 	public void setEntity(WREntity entity) {
 		this.entity = entity;
 	}
-	
+
 	public WROKLink getOkLink() {
 		return okLink;
 	}

@@ -76,7 +76,7 @@ public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 	@Override
 	public void visit(Button button) {
 		String entity = enu.getName();
-		WRCreateUnit cru = this.getWebModel().addCreateUnit(entity, enu);
+		this.getWebModel().addCreateUnit(entity, enu);
 	}
 
 	@Override
@@ -90,6 +90,9 @@ public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 
 	@Override
 	public void visit(ComboBox comboBox) {
+		System.out.println(" " + comboBox.getName() + ": ["
+				+ comboBox.getClass().getName() + "]");
+		
 		String name = comboBox.getName();
 		this.webModel.createSelectionFieldInEntryUnit(enu, name, "string");
 	}

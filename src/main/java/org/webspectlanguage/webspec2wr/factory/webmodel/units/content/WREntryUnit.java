@@ -22,7 +22,7 @@ public class WREntryUnit extends WRContentUnit {
 		this.fields = new HashSet<WRAbstractField>();
 		this.links = new HashSet<WRLink>();
 	}
-	
+
 	/*
 	 * Getter & Setters
 	 */

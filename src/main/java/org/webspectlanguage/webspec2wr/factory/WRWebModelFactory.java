@@ -174,7 +174,7 @@ public class WRWebModelFactory extends WebModelFactory {
 	private Integer getIdModifyUnit() {
 		return ++idModifyUnit;
 	}
-	
+
 	private Integer getIdSelectorUnit() {
 		return ++idSelectorUnit;
 	}
@@ -328,12 +328,13 @@ public class WRWebModelFactory extends WebModelFactory {
 
 		return mssu;
 	}
-	
+
 	/*
 	 * Utilities Unit
 	 */
-	
-	public WRSelectorUnit addSelectorUnitToEntryUnit(WREntryUnit target, String entityName) {
+
+	public WRSelectorUnit addSelectorUnitToEntryUnit(WREntryUnit target,
+			String entityName) {
 		// TODO
 		WREntity entity = this.getDataModel().getEntityWithName(entityName);
 
@@ -347,12 +348,11 @@ public class WRWebModelFactory extends WebModelFactory {
 
 		return seu;
 	}
-	
 
 	/*
 	 * Operation Unit
 	 */
-	
+
 	public WRCreateUnit addCreateUnit(String entityName, WREntryUnit target) {
 		// TODO
 		WREntity entity = this.getDataModel().getEntityWithName(entityName);
@@ -397,7 +397,6 @@ public class WRWebModelFactory extends WebModelFactory {
 		// TODO
 
 	}
-
 
 	/*
 	 * Link

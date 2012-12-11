@@ -137,19 +137,18 @@ public class WRDataModelFactoryTest {
 	@Test
 	public void testCleanUnnecessaryEntities() {
 		WREntity cityEntity = (WREntity) this.tester.createEntity("City");
-		WREntity countryEntity = (WREntity) this.tester.createEntity("Country");
+		this.tester.createEntity("Country");
 		
 		this.tester.cleanUnnecessaryEntities();
 		assertEquals(0, this.tester.getEntities().size());
 		
 		cityEntity = (WREntity) this.tester.createEntity("City");
-		countryEntity = (WREntity) this.tester.createEntity("Country");
+		this.tester.createEntity("Country");
 		this.tester.addAttributeToEntity("name", "String", cityEntity);
 		this.tester.cleanUnnecessaryEntities();
 		assertEquals(1, this.tester.getEntities().size());
 		assertNotNull(this.tester.getEntityWithName("City"));
 		assertNull(this.tester.getEntityWithName("Country"));
-		countryEntity = null;
 
 		// Agrego una relacion
 		this.tester.addRelationshipToEntity(cityEntity, "Country", "Many", "One");

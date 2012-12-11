@@ -16,12 +16,12 @@ public class WRSelectorUnit extends WRUnit {
 	private String name;
 	private WREntity entity;
 	private Set<WRLink> links;
-	
+
 	public WRSelectorUnit(String id, String name, WREntity entity) {
 		this.setId(id);
 		this.setName(name);
 		this.setEntity(entity);
-		
+
 		this.links = new HashSet<WRLink>();
 	}
 
@@ -48,7 +48,7 @@ public class WRSelectorUnit extends WRUnit {
 	public void setEntity(WREntity entity) {
 		this.entity = entity;
 	}
-	
+
 	public Set<WRLink> getLinks() {
 		return links;
 	}
@@ -56,7 +56,7 @@ public class WRSelectorUnit extends WRUnit {
 	public void setLinks(Set<WRLink> links) {
 		this.links = links;
 	}
-	
+
 	public void addLink(WRLink link) {
 		this.getLinks().add(link);
 	}

@@ -17,7 +17,7 @@ public class DiagramProcessorTest {
 
 	WRDataModelFactory dataModelTester;
 	WRWebModelFactory webModelTester;
-	
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -25,11 +25,11 @@ public class DiagramProcessorTest {
 	public void setUp() throws Exception {
 		this.dataModelTester = WRDataModelFactory.getInstance();
 		this.dataModelTester.cleanUpForTesting();
-		
+
 		this.webModelTester = WRWebModelFactory.getInstance();
 		this.webModelTester.cleanUpForTesting();
 	}
-	
+
 	/**
 	 * Test method for
 	 * {@link org.webspectlanguage.webspec2wr.DiagramProcessor#addDiagramFilePath(java.lang.String)}
@@ -67,8 +67,10 @@ public class DiagramProcessorTest {
 		assertEquals("# Entities Post Process: ", 4, this.dataModelTester
 				.getEntities().size());
 
-		assertTrue("[E: User]", this.dataModelTester.existsEntityWithName("User"));
-		assertTrue("[E: Post]", this.dataModelTester.existsEntityWithName("Post"));
+		assertTrue("[E: User]",
+				this.dataModelTester.existsEntityWithName("User"));
+		assertTrue("[E: Post]",
+				this.dataModelTester.existsEntityWithName("Post"));
 		assertTrue("[E: Country]",
 				this.dataModelTester.existsEntityWithName("Country"));
 		assertFalse("[E: PanelWithOutItems]",
@@ -81,7 +83,7 @@ public class DiagramProcessorTest {
 		assertFalse("[E: Country] -> [E: Post]",
 				this.dataModelTester.entityHasRelationshipTo("Country", "Post"));
 	}
-	
+
 	/**
 	 * Test method for
 	 * {@link org.webspectlanguage.webspec2wr.DiagramProcessor#processDiagramsForWebModel()}
@@ -95,18 +97,20 @@ public class DiagramProcessorTest {
 		tester.addDiagramFilePath("/Users/kaki/Documents/LIFIA/spec2mdd/resources/register.xml");
 		tester.addDiagramFilePath("/Users/kaki/Documents/LIFIA/spec2mdd/resources/registerAgain.xml");
 
-		assertEquals("# Pages Pre Process: ", 0, testerWebModel
-				.getPages().size());
+		assertEquals("# Pages Pre Process: ", 0, testerWebModel.getPages()
+				.size());
 
 		tester.processDiagramsForWebModel();
 
-		assertEquals("# Pages Post Process: ", 7, testerWebModel
-				.getPages().size());
+		assertEquals("# Pages Post Process: ", 7, testerWebModel.getPages()
+				.size());
 
 		assertTrue("[P: Home]", testerWebModel.existsPageWithName("Home"));
 		assertTrue("[P: Login]", testerWebModel.existsPageWithName("Login"));
-		assertTrue("[P: Register]", testerWebModel.existsPageWithName("Register"));
-		assertTrue("[P: Country Detail]", testerWebModel.existsPageWithName("CountryDetail"));
+		assertTrue("[P: Register]",
+				testerWebModel.existsPageWithName("Register"));
+		assertTrue("[P: Country Detail]",
+				testerWebModel.existsPageWithName("CountryDetail"));
 		assertFalse("[P: City]", testerWebModel.existsPageWithName("City"));
 
 	}
