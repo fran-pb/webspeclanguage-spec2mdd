@@ -1,6 +1,7 @@
 package org.webspectlanguage.webspec2wr.factory.webmodel.links;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public class WRLink {
 	private Boolean automaticCoupling;
 	private String type;
 	private String validate;
-	private Set<WRLinkParameter> parameters = new HashSet<WRLinkParameter>();
+	private List<WRLinkParameter> parameters = new ArrayList<WRLinkParameter>();
 
 	/*
 	 * Constructor
@@ -97,11 +98,11 @@ public class WRLink {
 		this.validate = validate;
 	}
 
-	public Set<WRLinkParameter> getParameters() {
+	public List<WRLinkParameter> getParameters() {
 		return parameters;
 	}
 
-	public void setParameters(Set<WRLinkParameter> parameters) {
+	public void setParameters(List<WRLinkParameter> parameters) {
 		this.parameters = parameters;
 	}
 	

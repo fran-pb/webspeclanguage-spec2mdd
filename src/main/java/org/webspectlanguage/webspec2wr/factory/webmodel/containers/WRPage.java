@@ -1,7 +1,8 @@
 package org.webspectlanguage.webspec2wr.factory.webmodel.containers;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
@@ -17,8 +18,8 @@ public class WRPage implements Page{
 	private String name;
 	
 	private WRWebModelFactory webModel;
-	private Set<WRContentUnit> contentUnits = new HashSet<WRContentUnit>();
-	private Set<WRLink> navigations = new HashSet<WRLink>();
+	private List<WRContentUnit> contentUnits = new ArrayList<WRContentUnit>();
+	private List<WRLink> navigations = new ArrayList<WRLink>();
 
 
 	/*
@@ -68,19 +69,19 @@ public class WRPage implements Page{
 		this.webModel = model;
 	}
 
-	public Set<WRContentUnit> getContentUnits() {
+	public List<WRContentUnit> getContentUnits() {
 		return contentUnits;
 	}
 
-	public void setUnits(Set<WRContentUnit> units) {
+	public void setUnits(List<WRContentUnit> units) {
 		this.contentUnits = units;
 	}
 
-	public Set<WRLink> getNavigations() {
+	public List<WRLink> getNavigations() {
 		return navigations;
 	}
 
-	public void setNavigations(Set<WRLink> navigations) {
+	public void setNavigations(List<WRLink> navigations) {
 		this.navigations = navigations;
 	}
 

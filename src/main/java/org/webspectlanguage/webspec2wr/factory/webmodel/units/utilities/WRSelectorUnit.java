@@ -1,7 +1,7 @@
 package org.webspectlanguage.webspec2wr.factory.webmodel.units.utilities;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.webspectlanguage.webspec2wr.factory.datamodel.WREntity;
 import org.webspectlanguage.webspec2wr.factory.webmodel.links.WRLink;
@@ -15,14 +15,14 @@ public class WRSelectorUnit extends WRUnit {
 	private String id;
 	private String name;
 	private WREntity entity;
-	private Set<WRLink> links;
+	private List<WRLink> links;
 
 	public WRSelectorUnit(String id, String name, WREntity entity) {
 		this.setId(id);
 		this.setName(name);
 		this.setEntity(entity);
 
-		this.links = new HashSet<WRLink>();
+		this.links = new ArrayList<WRLink>();
 	}
 
 	public String getId() {
@@ -49,11 +49,11 @@ public class WRSelectorUnit extends WRUnit {
 		this.entity = entity;
 	}
 
-	public Set<WRLink> getLinks() {
+	public List<WRLink> getLinks() {
 		return links;
 	}
 
-	public void setLinks(Set<WRLink> links) {
+	public void setLinks(List<WRLink> links) {
 		this.links = links;
 	}
 

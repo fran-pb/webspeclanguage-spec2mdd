@@ -15,8 +15,7 @@ public class WRContentUnit extends WRUnit {
 	private String name;
 	private WRPage parent;
 	
-	private Set<WRLink> links;
-
+	
 	/*
 	 * Constructor
 	 */

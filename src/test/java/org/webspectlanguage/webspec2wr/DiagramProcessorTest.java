@@ -94,23 +94,21 @@ public class DiagramProcessorTest {
 		DiagramProcessor tester = new DiagramProcessor();
 		WRWebModelFactory testerWebModel = tester.getWebModel();
 
-		tester.addDiagramFilePath("/Users/kaki/Documents/LIFIA/spec2mdd/resources/register.xml");
-		tester.addDiagramFilePath("/Users/kaki/Documents/LIFIA/spec2mdd/resources/registerAgain.xml");
+		tester.addDiagramFilePath("/Users/kaki/Documents/LIFIA/spec2mdd/resources/careone.xml");
 
 		assertEquals("# Pages Pre Process: ", 0, testerWebModel.getPages()
 				.size());
-
+ 
+		tester.processDiagramsForDataModel();
 		tester.processDiagramsForWebModel();
 
-		assertEquals("# Pages Post Process: ", 7, testerWebModel.getPages()
+		assertEquals("# Pages Post Process: ", 3, testerWebModel.getPages()
 				.size());
 
-		assertTrue("[P: Home]", testerWebModel.existsPageWithName("Home"));
-		assertTrue("[P: Login]", testerWebModel.existsPageWithName("Login"));
-		assertTrue("[P: Register]",
-				testerWebModel.existsPageWithName("Register"));
-		assertTrue("[P: Country Detail]",
-				testerWebModel.existsPageWithName("CountryDetail"));
+		assertTrue("[P: Cars]", testerWebModel.existsPageWithName("Cars"));
+		assertTrue("[P: NewCar]", testerWebModel.existsPageWithName("NewCar"));
+		assertTrue("[P: NewBrand]",
+				testerWebModel.existsPageWithName("NewBrand"));
 		assertFalse("[P: City]", testerWebModel.existsPageWithName("City"));
 
 	}

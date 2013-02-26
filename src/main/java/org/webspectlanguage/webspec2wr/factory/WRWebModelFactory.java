@@ -1,7 +1,9 @@
 package org.webspectlanguage.webspec2wr.factory;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.webspectlanguage.webspec2wr.factory.datamodel.WREntity;
@@ -27,7 +29,7 @@ import org.webspectlanguage.webspec2wr.factory.webmodel.units.utilities.WRSelect
  */
 public class WRWebModelFactory extends WebModelFactory {
 	private WRDataModelFactory dataModel;
-	private Set<WRPage> pages;
+	private List<WRPage> pages;
 	private Integer idPage;
 	private Integer idDataUnit;
 	private Integer idEntryUnit;
@@ -51,7 +53,7 @@ public class WRWebModelFactory extends WebModelFactory {
 
 	private WRWebModelFactory() {
 		this.dataModel = WRDataModelFactory.getInstance();
-		this.pages = new HashSet<WRPage>();
+		this.pages = new ArrayList<WRPage>();
 		this.idPage = 0;
 		this.idDataUnit = 0;
 		this.idEntryUnit = 0;
@@ -114,7 +116,7 @@ public class WRWebModelFactory extends WebModelFactory {
 
 	public void cleanUpForTesting() {
 		this.dataModel.cleanUpForTesting();
-		this.pages = new HashSet<WRPage>();
+		this.pages = new ArrayList<WRPage>();
 		this.idPage = 0;
 		this.idDataUnit = 0;
 		this.idEntryUnit = 0;
@@ -139,7 +141,7 @@ public class WRWebModelFactory extends WebModelFactory {
 		return dataModel;
 	}
 
-	public Set<WRPage> getPages() {
+	public List<WRPage> getPages() {
 		return pages;
 	}
 

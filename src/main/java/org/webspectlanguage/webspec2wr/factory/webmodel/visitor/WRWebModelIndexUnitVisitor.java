@@ -13,28 +13,31 @@ import org.webspeclanguage.impl.widget.RadioButton;
 import org.webspeclanguage.impl.widget.TextField;
 import org.webspectlanguage.webspec2wr.factory.WRDataModelFactory;
 import org.webspectlanguage.webspec2wr.factory.WRWebModelFactory;
-import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WREntryUnit;
+import org.webspectlanguage.webspec2wr.factory.webmodel.units.content.WRIndexUnit;
 
-public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
+/**
+ * @author Francisco Peña <tkd.inbox@gmail.com>
+ */
+public class WRWebModelIndexUnitVisitor implements WidgetVisitor {
 
 	private WRDataModelFactory dataModel;
 	private WRWebModelFactory webModel;
-	private WREntryUnit enu;
-
+	private WRIndexUnit inu;
+	
 	/*
 	 * Constructs
 	 */
 
-	public WRWebModelEntryUnitVisitor(WREntryUnit entryUnit) {
+	public WRWebModelIndexUnitVisitor(WRIndexUnit indexUnit) {
 		this.dataModel = WRDataModelFactory.getInstance();
 		this.webModel = WRWebModelFactory.getInstance();
-		this.enu = entryUnit;
+		this.inu = indexUnit;
 	}
 
 	/*
 	 * Setters and Getters
 	 */
-
+	
 	public WRDataModelFactory getDataModel() {
 		return dataModel;
 	}
@@ -51,12 +54,12 @@ public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 		this.webModel = webModel;
 	}
 
-	public WREntryUnit getEnu() {
-		return enu;
+	public WRIndexUnit getInu() {
+		return inu;
 	}
 
-	public void setEnu(WREntryUnit enu) {
-		this.enu = enu;
+	public void setInu(WRIndexUnit inu) {
+		this.inu = inu;
 	}
 
 	/*
@@ -65,70 +68,65 @@ public class WRWebModelEntryUnitVisitor implements WidgetVisitor {
 
 	@Override
 	public void visit(TextField textField) {
-		System.out.println(" " + textField.getName() + ": ["
-				+ textField.getClass().getName() + "]");
+		// TODO Auto-generated method stub
 
-		String name = textField.getName();
-		this.webModel.createFieldInEntryUnit(enu, name, "string", "true");
 	}
 
 	@Override
 	public void visit(Button button) {
-		String entity = enu.getName();
-		this.getWebModel().addCreateUnit(entity, enu);
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void visit(CheckBox checkBox) {
-		System.out.println(" " + checkBox.getName() + ": ["
-				+ checkBox.getClass().getName() + "]");
+		// TODO Auto-generated method stub
 
-		String name = checkBox.getName();
-		this.webModel.createFieldInEntryUnit(enu, name, "boolean", "true");
 	}
 
 	@Override
 	public void visit(ComboBox comboBox) {
-		System.out.println(" " + comboBox.getName() + ": ["
-				+ comboBox.getClass().getName() + "]");
-		
-		String name = comboBox.getName();
-		this.webModel.createSelectionFieldInEntryUnit(enu, name, "string");
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void visit(Link link) {
-		return;
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void visit(ListBox listBox) {
-		return;
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void visit(ListOfContainer listOfContainer) {
-		return;
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void visit(RadioButton radioButton) {
-		// TODO
-		
-		System.out.println(" " + radioButton.getName() + ": ["
-				+ radioButton.getClass().getName() + "]");
+		// TODO Auto-generated method stub
 
-		String name = radioButton.getName();
 	}
 
 	@Override
 	public void visit(Label label) {
-		return;
+		System.out.println(" " + label.getName() + ": ["
+				+ label.getClass().getName() + "]");
+
+		String name = label.getName();
+		this.getInu().addDisplayAttribute(name);
 	}
 
 	@Override
 	public void visit(Panel panel) {
-		return;
+		// TODO Auto-generated method stub
+
 	}
 
 }

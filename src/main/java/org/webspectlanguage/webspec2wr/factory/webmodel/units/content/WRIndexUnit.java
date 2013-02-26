@@ -1,5 +1,9 @@
 package org.webspectlanguage.webspec2wr.factory.webmodel.units.content;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import org.webspectlanguage.webspec2wr.factory.datamodel.WREntity;
 import org.webspectlanguage.webspec2wr.factory.webmodel.containers.WRPage;
 
@@ -10,9 +14,7 @@ import org.webspectlanguage.webspec2wr.factory.webmodel.containers.WRPage;
 public class WRIndexUnit extends WRContentUnit {
 
 	private WREntity entity;
-
-	// TODO display attributes? Lista de atributos a mostrar basada en spec o
-	// por defecto muestro todos los atributos?
+	private List<String> displayAttributes;
 
 	/*
 	 * Constructor
@@ -20,6 +22,7 @@ public class WRIndexUnit extends WRContentUnit {
 	public WRIndexUnit(String id, String name, WREntity entity, WRPage page) {
 		super(id, name, page);
 		this.setEntity(entity);
+		this.displayAttributes = new ArrayList<String>();
 	}
 
 	/*
@@ -31,6 +34,18 @@ public class WRIndexUnit extends WRContentUnit {
 
 	public void setEntity(WREntity entity) {
 		this.entity = entity;
+	}
+	
+	public List<String> getDisplayAttributes() {
+		return displayAttributes;
+	}
+
+	public void setDisplayAttributes(List<String> diplayAttributes) {
+		this.displayAttributes = diplayAttributes;
+	}
+
+	public void addDisplayAttribute(String attribute) {
+		this.getDisplayAttributes().add(attribute);
 	}
 
 }

@@ -18,12 +18,6 @@ public class WREntity implements Entity {
 	/*
 	 * Constructor
 	 */
-	/*
-	public WREntity(String name, WRDataModelFactory dm) {
-		this.dataModel = dm;
-		this.name = name;
-	}
-	*/
 	
 	public WREntity(String name) {
 		this.dataModel = WRDataModelFactory.getInstance();
@@ -37,15 +31,6 @@ public class WREntity implements Entity {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		
-		/*
-		result = prime * result
-				+ ((attributes == null) ? 0 : attributes.hashCode());
-		result = prime * result
-				+ ((dataModel == null) ? 0 : dataModel.hashCode());
-		result = prime * result
-				+ ((relationships == null) ? 0 : relationships.hashCode());
-		*/
 		
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		
@@ -61,24 +46,6 @@ public class WREntity implements Entity {
 		if (!(obj instanceof WREntity))
 			return false;
 		WREntity other = (WREntity) obj;
-		
-		/*
-		if (attributes == null) {
-			if (other.attributes != null)
-				return false;
-		} else if (!attributes.equals(other.attributes))
-			return false;
-		if (dataModel == null) {
-			if (other.dataModel != null)
-				return false;
-		} else if (!dataModel.equals(other.dataModel))
-			return false;
-		if (relationships == null) {
-			if (other.relationships != null)
-				return false;
-		} else if (!relationships.equals(other.relationships))
-			return false;
-		*/
 		
 		if (name == null) {
 			if (other.name != null)

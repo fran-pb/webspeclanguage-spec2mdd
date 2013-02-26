@@ -47,10 +47,11 @@ public class WRWebModelWidgetVisitor implements
 				"org.webspeclanguage.impl.widget.TextField",
 				"org.webspeclanguage.impl.widget.CheckBox",
 				"org.webspeclanguage.impl.widget.ComboBox",
-				"org.webspeclanguage.impl.widget.RadioButton");
+				"org.webspeclanguage.impl.widget.RadioButton",
+				"org.webspeclanguage.impl.widget.Button");
 
-		this.acceptableIndexUnitWidgets = Arrays
-				.asList("org.webspeclanguage.impl.widget.TextField");
+		this.acceptableIndexUnitWidgets = Arrays.asList(
+				"org.webspeclanguage.impl.widget.Label");
 	}
 
 	/*
@@ -144,8 +145,7 @@ public class WRWebModelWidgetVisitor implements
 
 			String widgetClass = firstWidget.getClass().getName();
 
-			if (this.getAcceptableIndexUnitWidgets().contains(
-					widgetClass)) {
+			if (this.getAcceptableIndexUnitWidgets().contains(widgetClass)) {
 				this.inferIndexUnit(listOfContainer);
 			}
 
@@ -256,7 +256,7 @@ public class WRWebModelWidgetVisitor implements
 			}
 		}
 	}
-	
+
 	private void inferIndexUnit(ListOfContainer listOfContainer) {
 		Boolean acceptableStatus = true;
 
@@ -283,9 +283,19 @@ public class WRWebModelWidgetVisitor implements
 					+ " [ListOfContainer] Será inferido a - IndexUnit -");
 
 			String name = listOfContainer.getName();
-			WRIndexUnit inu = this.getWebModel().addIndexUnitToPage(page, name, name);
+			WRIndexUnit inu = this.getWebModel().addIndexUnitToPage(page, name,
+					name);
+			
+			// iterate through the entities
+			itr = listOfContainer.getWidgets().iterator();
+
+			WRWebModelIndexUnitVisitor visitor = new WRWebModelIndexUnitVisitor(
+					inu);
+			while (itr.hasNext()) {
+				itr.next().accept(visitor);
+			}
 		}
-		
+
 	}
 
 }
